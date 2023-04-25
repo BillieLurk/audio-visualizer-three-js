@@ -1,17 +1,5 @@
 var noise = new SimplexNoise();
 var vizInit = function () {
-  var file = document.getElementById("thefile");
-  var audio = document.getElementById("audio");
-  var fileLabel = document.querySelector("label.file");
-
-  document.onload = function (e) {
-    console.log(e);
-    audio.play();
-    play();
-  };
-
-  setupAudio();
-
   async function setupAudio() {
     var audioContext = new AudioContext();
     var analyser = audioContext.createAnalyser();
@@ -169,17 +157,21 @@ var vizInit = function () {
       mesh.geometry.computeVertexNormals();
       mesh.geometry.computeFaceNormals();
     }
-
-   
+    document.body.addEventListener("click", function () {
+      if (audioContext.state === "suspended") {
+        audioContext.resume();
+      }
+    });
   }
   setupAudio();
 };
 
-
-window.onload = vizInit();
+window.onload = vizInit;
+//make a timer to start the audio
 
 document.body.addEventListener("touchend", function (ev) {
-  context.resume();
+  var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  audioContext.resume();
 });
 
 function fractionate(val, minVal, maxVal) {
