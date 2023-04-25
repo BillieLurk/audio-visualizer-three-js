@@ -170,7 +170,7 @@ var vizInit = function () {
       mesh.geometry.computeFaceNormals();
     }
 
-    audio.play();
+   
   }
   setupAudio();
 };
