@@ -3,7 +3,7 @@ var vizInit = function () {
   async function setupAudio() {
     var audioContext = new AudioContext();
     var analyser = audioContext.createAnalyser();
-    analyser.connect(audioContext.destination);
+    //analyser.connect(audioContext.destination);
     analyser.fftSize = 512;
     var bufferLength = analyser.frequencyBinCount;
     var dataArray = new Uint8Array(bufferLength);
